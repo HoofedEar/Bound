@@ -275,6 +275,8 @@ if __name__ == "__main__":
 			code = input("β ")
 			if code == "exit":
 				break
+			if code == "":
+				print("Hello, world!")
 			else:
 				main(code)
 	else:
