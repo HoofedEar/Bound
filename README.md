@@ -29,3 +29,4 @@ Stack-based esolang involving integers
 | `{`       | Rotates the top element to the left.                                       | `1 2 3 4 {` becomes [2, 3, 4, 1]      |
 | `}`       | Rotates the top element to the right.                                      | `1 2 3 4 }` becomes [4, 1, 2, 3]      |
 | `U`       | Removes all falsey elements from the stack.                                | `2 3 > U 7` becomes [7]               |
+| `R`       | Repeats the next command n times, where n is top value.                    | `2 2 2 3 R +` becomes [6]             |
