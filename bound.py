@@ -281,6 +281,27 @@ def main(c):
 					total = list((i for i in stack if type(i) is int))
 					stack.append(sum(total))
 
+			if current == 'I': # Increment the top of the stack 
+				if len(stack) >= 1:
+					if type(stack[-1]) is int:
+						i = stack.pop()
+						stack.append(i + 1)
+
+			if current == 'D': # Decrement the top of the stack 
+				if len(stack) >= 1:
+					if type(stack[-1]) is int:
+						i = stack.pop()
+						stack.append(i - 1)
+			
+			if current == '?': # Check if the top of the stack is even
+				if len(stack) >= 1:
+					if type(stack[-1]) is int:
+						e = stack.pop()
+						if (e % 2 == 0):
+							stack.append(1)
+						else:
+							stack.append(0)
+
 			if current in numlist:
 				stack.append(int(current))
 
