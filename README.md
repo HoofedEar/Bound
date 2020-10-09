@@ -37,4 +37,4 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `}`       | Rotates the top element to the right.                                      | `1 2 3 }` becomes [3, 1, 2]           |
 | `U`       | Removes all falsey elements from the stack.                                | `2 3 > U 7` becomes [7]               |
 | `R`       | Repeats the next command n times, where n is top value.                    | `2 2 2 3 R +` becomes [6]             |
-| `:`       | Combines the top two values into one if they are both ints.                | `2 2 :` becomes [22]             |
+| `:`       | Combines the top two values into one if they are both ints.                | `2 2 :` becomes [22]                  |
