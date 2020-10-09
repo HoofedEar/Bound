@@ -19,6 +19,7 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `%`       | Modulo with the top two elements.                                          | `5 3 %` becomes [2]                   |
 | `^`       | Multiply the second element to the power of the top element.               | `2 9 ^` becomes [512]                 |
 | `#`       | Square the top element.                                                    | `6 5 #` becomes [6, 25]               |
+| `!`       | Factorial the top element.                                                 | `5 !` becomes [120]                   |
 | `>`       | Greater than involving the top two elements. (0=False,1=True)              | `2 3 >` becomes [0]                   |
 | `<`       | Less than involving the top two elements.                                  | `2 3 <` becomes [1]                   |
 | `=`       | Integer comparison with top two elements.                                  | `3 3 =` becomes [1]                   |
