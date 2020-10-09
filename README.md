@@ -1,5 +1,11 @@
 # Bound
-Stack-based esolang involving integers. Inspired by Stuck.
+Stack-based esolang involving integers. Inspired by Stuck.  
+  
+## Usage
+`python bound.py`  
+`python bound.py [commands]`  
+  
+## Command List
 
 | Command | Function                                                                   | Example                             |
 |---------|----------------------------------------------------------------------------|-------------------------------------|
