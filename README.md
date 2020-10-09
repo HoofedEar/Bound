@@ -1,4 +1,4 @@
-# Bound
+# βound
 Stack-based esolang involving integers. Inspired by Stuck.  
   
 ## Usage
