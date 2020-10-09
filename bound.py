@@ -243,9 +243,20 @@ def main(c):
 				if len(stack) >= 1:
 					if type(stack[-1]) is int:
 						r = stack.pop()
-						for _ in list(range(r)):
+						for _ in list(range(r - 1)):
 							source.append(source[-1])
 							length = len(source)
+
+
+			if current == ':':
+				if len(stack) >= 2:
+					if type(stack[-1]) is int and type(stack[-2]) is int:
+						try:
+							a = stack.pop()
+							b = stack.pop()
+							stack.append(str(b) + str(a))
+						except TypeError:
+							continue
 
 			if current in numlist:
 				stack.append(int(current))
@@ -259,7 +270,12 @@ def main(c):
 
 if __name__ == "__main__":
 	if len(sys.argv) == 1:
-		code = input("β ")
+		while True:
+			code = input("β ")
+			if code == "exit":
+				break
+			else:
+				main(code)
 	else:
 		code = sys.argv[1]
-	main(code)
+		main(code)
