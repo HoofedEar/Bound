@@ -9,8 +9,8 @@ Stack-based esolang involving integers. Inspired by Stuck.
 
 | Command | Function                                                                     | Example                               |
 |-----------|----------------------------------------------------------------------------|---------------------------------------|
-| `.`       | Prints out the current stack.                                              | `1 2 3` prints [1, 2, 3]              |
 | `0-9`     | Puts the integer on top of the stack.                                      | `1 4 5` becomes [1, 4, 5]             |
+| `.`       | Prints out the current stack.                                              | `1 2 3 .` prints [1, 2, 3]             |
 | `i`       | Get input, adds it to stack. (Ints will be int, all else are str)          | `i "hello"` becomes ["hello"]         |
 | `+`       | Sum of the top two elements.                                               | `2 2 +` becomes [4]                   |
 | `-`       | Subtract the top element from the second top element.                      | `3 2 -` becomes [1]                   |
