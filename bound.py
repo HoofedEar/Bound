@@ -26,7 +26,11 @@ def main(c):
 
 			if current == 'i': # Get Input
 				v = input()
-				stack.append(v)
+				try:
+					v = int(v)
+					stack.append(v)
+				except ValueError:
+					stack.append(v)
 
 			if current == '.': # Debug, output stack
 				print(stack)
@@ -251,5 +255,8 @@ def main(c):
 
 
 if __name__ == "__main__":
-	code = input("β ")
+	if len(sys.argv) == 1:
+		code = input("β ")
+	else:
+		code = sys.argv[1]
 	main(code)
