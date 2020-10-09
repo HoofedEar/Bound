@@ -1,5 +1,11 @@
 # Bound
-Stack-based esolang involving integers
+Stack-based esolang involving integers. Inspired by Stuck.  
+  
+## Usage
+`python bound.py`  
+`python bound.py [commands]`  
+  
+## Command List
 
 | Command | Function                                                                   | Example                             |
 |---------|----------------------------------------------------------------------------|-------------------------------------|
@@ -21,11 +27,12 @@ Stack-based esolang involving integers
 | `;`       | Swap the top two elements.                                                 | `1 7 ;` becomes [7, 1]                |
 | `,`       | Remove all but the top element.                                            | `1 2 3 4 5 ,` becomes [5]             |
 | `l`       | Length of string at top element.                                           | `i "hello" l` becomes [5]             |
-| `@`       | Reverses the stack.                                                        | `1 2 3 4 5 @` becomes [5, 4, 3, 2, 1] |
-| `$`       | Sort the stack.                                                            | `4 3 6 7 7 $` becomes [3, 4, 6, 7, 7] |
+| `@`       | Reverses the stack.                                                        | `1 2 3 @` becomes [3, 2, 1]           |
+| `$`       | Sort the stack.                                                            | `3 1 2 $` becomes [1, 2, 3]           |
 | `d`       | Convert the top integer into a char.                                       | `9 1 + 6 * 5 + d` becomes ['A']       |
 | `'`       | The next char is converted into an integer.                                | `' a` becomes [97]                    |
 | `s`       | Write each char in the stack out to stdout.                                | `9 1 + 6 * 5 + s` outputs 'A'         |
 | `{`       | Rotates the top element to the left.                                       | `1 2 3 4 {` becomes [2, 3, 4, 1]      |
 | `}`       | Rotates the top element to the right.                                      | `1 2 3 4 }` becomes [4, 1, 2, 3]      |
 | `U`       | Removes all falsey elements from the stack.                                | `2 3 > U 7` becomes [7]               |
+| `R`       | Repeats the next command n times, where n is top value.                    | `2 2 2 3 R +` becomes [6]             |
