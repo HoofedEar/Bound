@@ -8,6 +8,7 @@ from os.path import join,basename,splitext
 numlist = "0123456789"
 
 def main(c):
+	c = c.replace(" ", "")
 	source = [char for char in c]
 	source = list(reversed(source))
 	length = len(source)
