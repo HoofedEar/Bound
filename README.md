@@ -21,8 +21,8 @@ Stack-based esolang involving integers
 | `;`       | Swap the top two elements.                                                 | `1 7 ;` becomes [7, 1]                |
 | `,`       | Remove all but the top element.                                            | `1 2 3 4 5 ,` becomes [5]             |
 | `l`       | Length of string at top element.                                           | `i "hello" l` becomes [5]             |
-| `@`       | Reverses the stack.                                                        | `1 2 3 4 5 @` becomes [5, 4, 3, 2, 1] |
-| `$`       | Sort the stack.                                                            | `4 3 6 7 7 $` becomes [3, 4, 6, 7, 7] |
+| `@`       | Reverses the stack.                                                        | `1 2 3 @` becomes [3, 2, 1]           |
+| `$`       | Sort the stack.                                                            | `3 1 2 $` becomes [1, 2, 3]           |
 | `d`       | Convert the top integer into a char.                                       | `9 1 + 6 * 5 + d` becomes ['A']       |
 | `'`       | The next char is converted into an integer.                                | `' a` becomes [97]                    |
 | `s`       | Write each char in the stack out to stdout.                                | `9 1 + 6 * 5 + s` outputs 'A'         |
