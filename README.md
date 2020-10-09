@@ -1,5 +1,5 @@
 # Bound
-Stack-based esolang involving integers
+Stack-based esolang involving integers. Inspired by Stuck.
 
 | Command | Function                                                                   | Example                             |
 |---------|----------------------------------------------------------------------------|-------------------------------------|
