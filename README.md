@@ -48,4 +48,5 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `D`       | Decrements the top element of the stack.                                   | `7 D D` becomes [5]                   |
 | `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     |  
 
-`'H'e'l'l'o',32:'w'o'r'l'd'!d}d}d}d}d}d}d}d}d}d}d}d}d}.s`
+
+`'Hd'ed'ld'ld'od',d32:d'wd'od'rd'ld'dd'!ds`
