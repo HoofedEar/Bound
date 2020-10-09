@@ -32,7 +32,7 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `d`       | Convert the top integer into a char.                                       | `9 1 + 6 * 5 + d` becomes ['A']       |
 | `'`       | The next char is converted into an integer.                                | `' a` becomes [97]                    |
 | `s`       | Write each char in the stack out to stdout.                                | `9 1 + 6 * 5 + s` outputs 'A'         |
-| `{`       | Rotates the top element to the left.                                       | `1 2 3 4 {` becomes [2, 3, 4, 1]      |
-| `}`       | Rotates the top element to the right.                                      | `1 2 3 4 }` becomes [4, 1, 2, 3]      |
+| `{`       | Rotates the top element to the left.                                       | `1 2 3 {` becomes [2, 3, 1]           |
+| `}`       | Rotates the top element to the right.                                      | `1 2 3 }` becomes [3, 1, 2]           |
 | `U`       | Removes all falsey elements from the stack.                                | `2 3 > U 7` becomes [7]               |
 | `R`       | Repeats the next command n times, where n is top value.                    | `2 2 2 3 R +` becomes [6]             |
