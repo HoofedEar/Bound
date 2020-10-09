@@ -7,8 +7,9 @@ Stack-based esolang involving integers. Inspired by Stuck.
   
 ## Command List
 
-| Command | Function                                                                   | Example                             |
-|---------|----------------------------------------------------------------------------|-------------------------------------|
+| Command | Function                                                                     | Example                               |
+|---------|------------------------------------------------------------------------------|---------------------------------------|
+| `0-9`     | Puts the integer on top of the stack.                                      | `1 4 5` becomes [1, 4, 5]             |
 | `i`       | Get input from the user, add to stack. (Raw input)                         | `i "hello"` becomes ["hello"]         |
 | `+`       | Sum of the top two elements.                                               | `2 2 +` becomes [4]                   |
 | `-`       | Subtract the top element from the second top element.                      | `3 2 -` becomes [1]                   |
