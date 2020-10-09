@@ -313,7 +313,7 @@ def main(c):
 
 
 if __name__ == "__main__":
-	print("=Bound v0.1.4=")
+	print("=Bound v0.1.5=")
 	if len(sys.argv) == 1:
 		while True:
 			print()
