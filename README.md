@@ -46,4 +46,7 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `n`       | Puts the sum of all ints onto the stack.                                   | `5 5 5 n` becomes [5, 5, 5, 15]       |
 | `I`       | Increments the top element of the stack.                                   | `0 I I` becomes [2]                   |
 | `D`       | Decrements the top element of the stack.                                   | `7 D D` becomes [5]                   |
-| `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     |
+| `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     |  
+
+
+`'Hd'ed'ld'ld'od',d32:d'wd'od'rd'ld'dd'!ds`
