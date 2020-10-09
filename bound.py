@@ -14,8 +14,12 @@ def main(c):
 	convert = False
 	stack = []
 
-	for _ in range(length):
-		current = source.pop()
+	while length != 0:
+		try:
+			current = source.pop()
+		except IndexError:
+			break
+
 		print("> " + current)
 
 		if convert == False:
@@ -228,6 +232,14 @@ def main(c):
 				if len(stack) >= 1:
 					stack[:] = [x for x in stack if x != 0]
 
+			if current == 'R': # Repeat the next command equal to the top value 
+				if len(stack) >= 1:
+					if type(stack[-1]) is int:
+						r = stack.pop()
+						for _ in list(range(r)):
+							source.append(source[-1])
+							length = len(source)
+
 			if current in numlist:
 				stack.append(int(current))
 
@@ -239,5 +251,5 @@ def main(c):
 
 
 if __name__ == "__main__":
-	code = input("> ")
+	code = input("β ")
 	main(code)
