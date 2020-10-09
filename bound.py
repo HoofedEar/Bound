@@ -254,7 +254,7 @@ def main(c):
 						try:
 							a = stack.pop()
 							b = stack.pop()
-							stack.append(str(b) + str(a))
+							stack.append(int(str(b) + str(a)))
 						except TypeError:
 							continue
 
@@ -271,6 +271,7 @@ def main(c):
 if __name__ == "__main__":
 	if len(sys.argv) == 1:
 		while True:
+			print()
 			code = input("β ")
 			if code == "exit":
 				break
