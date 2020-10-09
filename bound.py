@@ -2,6 +2,7 @@ import importlib
 import sys
 import glob
 import math
+import random
 from os.path import join,basename,splitext
 
 numlist = "0123456789"
@@ -248,7 +249,7 @@ def main(c):
 							length = len(source)
 
 
-			if current == ':':
+			if current == ':': # Combines the top two elements if they are integers
 				if len(stack) >= 2:
 					if type(stack[-1]) is int and type(stack[-2]) is int:
 						try:
@@ -257,6 +258,27 @@ def main(c):
 							stack.append(int(str(b) + str(a)))
 						except TypeError:
 							continue
+
+			if current == 'c': # Put a copy of the top element
+				if len(stack) >= 1:
+					stack.append(stack[-1])
+
+			if current == '&': # Puts elements from 1 to n, exclusively (expANDs)
+				if len(stack) >= 1:
+					if type(stack[-1]) is int:
+						d = stack.pop()
+						exp = range(1, d+1)
+						for i in list(exp):
+							stack.append(i)
+
+			if current == '~': # Randomize the stack lol
+				if len(stack) >= 2:
+					random.shuffle(stack)
+
+			if current == 'n': # Puts the sum of all ints on the stack
+				if len(stack) >= 1:
+					total = list((i for i in stack if type(i) is int))
+					stack.append(sum(total))
 
 			if current in numlist:
 				stack.append(int(current))
@@ -269,6 +291,7 @@ def main(c):
 
 
 if __name__ == "__main__":
+	print("=Bound v0.1.4=")
 	if len(sys.argv) == 1:
 		while True:
 			print()
