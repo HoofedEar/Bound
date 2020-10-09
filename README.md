@@ -11,7 +11,7 @@ Stack-based esolang involving integers. Inspired by Stuck.
 |-----------|----------------------------------------------------------------------------|---------------------------------------|
 | `.`       | Prints out the current stack.                                              | `1 2 3` prints [1, 2, 3]              |
 | `0-9`     | Puts the integer on top of the stack.                                      | `1 4 5` becomes [1, 4, 5]             |
-| `i`       | Get input from the user, add to stack. (Raw input)                         | `i "hello"` becomes ["hello"]         |
+| `i`       | Get input, adds it to stack. (Ints will be int, all else are str)          | `i "hello"` becomes ["hello"]         |
 | `+`       | Sum of the top two elements.                                               | `2 2 +` becomes [4]                   |
 | `-`       | Subtract the top element from the second top element.                      | `3 2 -` becomes [1]                   |
 | `*`       | Multiply the top two elements together.                                    | `5 3 *` becomes [15]                  |
