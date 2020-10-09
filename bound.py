@@ -33,7 +33,7 @@ def main(c):
 				except ValueError:
 					stack.append(v)
 
-			if current == '.': # Debug, output stack
+			if current == '.': # Output stack
 				print(stack)
 
 			if current == '+': # Addition
@@ -183,7 +183,7 @@ def main(c):
 						stack.append(var)
 						var = ''
 
-			if current == ';': # Swap
+			if current == ';': # Swap top two elements
 				if len(stack) >= 2:
 					a = stack[-1]
 					b = stack[-2]
@@ -194,7 +194,7 @@ def main(c):
 				if len(stack) >= 2:
 					stack = list(map(int, str(stack[-1])))
 
-			if current == 'l': # Len of string
+			if current == 'l': # Len of top element if string
 				if len(stack) >= 1:
 					if type(stack[-1]) is str:
 						stack[-1] = len(stack[-1])
