@@ -14,6 +14,7 @@ def main(c):
 	length = len(source)
 	var = ''
 	convert = False
+	debug = False
 	stack = []
 
 	while length != 0:
@@ -22,9 +23,13 @@ def main(c):
 		except IndexError:
 			break
 
-		print("> " + current)
+		if debug == True:
+			print("> " + current)
 
 		if convert == False:
+
+			if current == '`': # Get Input
+				debug = True
 
 			if current == 'i': # Get Input
 				v = input()
@@ -308,6 +313,7 @@ def main(c):
 		else:
 			stack.append(ord(current))
 			convert = False
+	print()
 
 
 
