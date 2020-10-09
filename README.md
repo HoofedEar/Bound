@@ -25,7 +25,7 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `=`       | Integer comparison with top two elements.                                  | `3 3 =` becomes [1]                   |
 | `\|`      | Absolute value of the top most element.                                    | `2 3 - \|` becomes [1]                |
 | `g`       | Pop the top value and store it.                                            | `5 3 2 g` becomes [5, 3]              |
-| `G`       | Replace the top value with the stored element, if there is a stored value. | `5 3 2 g 1 G` becomes [5, 3, 2]       |
+| `G`       | Replace the top value with the stored element, if there is a stored value. | `7 2 g 8 G` becomes [7, 2]            |
 | `;`       | Swap the top two elements.                                                 | `1 7 ;` becomes [7, 1]                |
 | `,`       | Remove all but the top element.                                            | `1 2 3 4 5 ,` becomes [5]             |
 | `l`       | Length of string at top element.                                           | `i "hello" l` becomes [5]             |
