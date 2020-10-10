@@ -283,8 +283,12 @@ def main(c):
 
 			if current == 'n': # Puts the sum of all ints on the stack
 				if len(stack) >= 1:
-					total = list((i for i in stack if type(i) is int))
-					stack.append(sum(total))
+					total = 0
+					for i in stack:
+						if type(i) is int:
+							total += i
+					stack = [x for x in stack if not isinstance(x, int)]
+					stack.append(total)
 
 			if current == 'I': # Increment the top of the stack 
 				if len(stack) >= 1:
