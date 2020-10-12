@@ -5,6 +5,7 @@ import math
 import random
 from os.path import join,basename,splitext
 
+VERSION = "v0.1.6"
 numlist = "0123456789"
 
 def main(c):
@@ -30,14 +31,6 @@ def main(c):
 
 			if current == '`': # Get Input
 				debug = True
-
-			#if current == 'i': # Get Input
-			#	v = input()
-			#	try:
-			#		v = int(v)
-			#		stack.append(v)
-			#	except ValueError:
-			#		stack.append(v)
 
 			if current == '.': # Output stack
 				print(stack)
@@ -200,11 +193,6 @@ def main(c):
 				if len(stack) >= 2:
 					stack = list(map(int, str(stack[-1])))
 
-			#if current == 'l': # Len of top element if string
-			#	if len(stack) >= 1:
-			#		if type(stack[-1]) is str:
-			#			stack[-1] = len(stack[-1])
-
 			if current == '@': # Reverse stack
 				if len(stack) >= 1:
 						stack = list(reversed(stack))
@@ -323,7 +311,7 @@ def main(c):
 
 
 if __name__ == "__main__":
-	print("=Bound v0.1.5=")
+	print("=Bound %s=" % VERSION)
 	if len(sys.argv) == 1:
 		while True:
 			print()
