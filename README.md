@@ -10,8 +10,7 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | Command | Function                                                                     | Example                               |
 |-----------|----------------------------------------------------------------------------|---------------------------------------|
 | `0-9`     | Puts the integer on top of the stack.                                      | `1 4 5` becomes [1, 4, 5]             |
-| `.`       | Prints out the current stack.                                              | `1 2 3 .` prints [1, 2, 3]             |
-| `i`       | Get input, adds it to stack. (Ints will be int, all else are str)          | `i "hello"` becomes ["hello"]         |
+| `.`       | Prints out the current stack.                                              | `1 2 3 .` prints [1, 2, 3]            |
 | `+`       | Sum of the top two elements.                                               | `2 2 +` becomes [4]                   |
 | `-`       | Subtract the top element from the second top element.                      | `3 2 -` becomes [1]                   |
 | `*`       | Multiply the top two elements together.                                    | `5 3 *` becomes [15]                  |
@@ -29,7 +28,6 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `G`       | Replace the top value with the stored element, if it exists.               | `7 2 g 8 G` becomes [7, 2]            |
 | `;`       | Swap the top two elements.                                                 | `1 7 ;` becomes [7, 1]                |
 | `,`       | Remove all but the top element.                                            | `1 2 3 4 5 ,` becomes [5]             |
-| `l`       | Length of string at top element.                                           | `i "hello" l` becomes [5]             |
 | `@`       | Reverses the stack.                                                        | `1 2 3 @` becomes [3, 2, 1]           |
 | `$`       | Sort the stack.                                                            | `3 1 2 $` becomes [1, 2, 3]           |
 | `d`       | Convert the top integer into a char.                                       | `9 1 : 6 + d` becomes ['a']           |
