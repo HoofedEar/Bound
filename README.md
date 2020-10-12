@@ -31,7 +31,7 @@ Stack-based esolang involving integers. Inspired by Stuck.
 | `@`       | Reverses the stack.                                                        | `1 2 3 @` becomes [3, 2, 1]           |
 | `$`       | Sort the stack.                                                            | `3 1 2 $` becomes [1, 2, 3]           |
 | `d`       | Convert the top integer into a char.                                       | `9 1 : 6 + d` becomes ['a']           |
-| `'`       | The next char is converted into an integer.                                | `' a` becomes [97]                    |
+| `'`       | The top element is converted into an integer, if char.                     | `9 7 : d '` becomes [97]              |
 | `s`       | Write each char in the stack out to stdout.                                | `9 1 : 6 + d s` outputs 'a'           |
 | `{`       | Rotates the top element to the left.                                       | `1 2 3 {` becomes [2, 3, 1]           |
 | `}`       | Rotates the top element to the right.                                      | `1 2 3 }` becomes [3, 1, 2]           |
