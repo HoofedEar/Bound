@@ -202,14 +202,7 @@ def main(c):
 		if current == 'd': # turn the top integer into a char
 			if len(stack) >= 1:
 				if type(stack[-1]) is int:
-					try:
-						stack.append(chr(stack.pop()))
-					except ValueError:
-						continue
-					except OverflowError:
-						continue
-					except TypeError:
-						continue
+					stack.append(chr(stack.pop()))
 
 		if current == '\'': # Top char is converted to int
 			if len(stack) >= 1:
