@@ -5,7 +5,7 @@ import math
 import random
 from os.path import join,basename,splitext
 
-VERSION = "v0.1.6"
+VERSION = "v0.1.7"
 numlist = "0123456789"
 
 def main(c):
@@ -304,13 +304,12 @@ def main(c):
 					else:
 						stack.append(0)
 
-		if current == '(':
+		if current == 'b': # Breaks apart the top int into seprate integers
 			if len(stack) >= 1:
-					if type(stack[-1]) is int:
-						a = stack.pop()
-						for _ in list(range(a - 1)):
-							source.append(source[-1])
-							length = len(source)
+				if type(stack[-1]) is int:
+					a = stack.pop()
+					for i in list(map(int, str(a))):
+						stack.append(i)
 
 		if current in numlist:
 			stack.append(int(current))
