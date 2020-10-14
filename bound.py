@@ -247,8 +247,11 @@ def main(c):
 				if isinstance(stack[-1], int):
 					a = stack.pop()
 					for _ in list(range(a - 1)):
-						source.append(source[-1])
-						length = len(source)
+						try:
+							source.append(source[-1])
+							length = len(source)
+						except IndexError:
+							continue
 
 
 		if current == ':': # Combines the top two elements if they are integers
