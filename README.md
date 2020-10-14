@@ -32,7 +32,7 @@ Stack-based interpreted esolang involving integers and single char commands. Ins
 | `$`       | Sort the stack.                                                            | `3 1 2 $` becomes [1, 2, 3]           |
 | `d`       | Convert the top integer into a char.                                       | `9 7 : d` becomes ['a']               |
 | `'`       | The top element is converted into an integer, if char.                     | `9 7 : d c '` becomes ['a', 97]       |
-| `s`       | Write each char in the stack out to stdout.                                | `9 1 : 6 + d s` outputs 'a'           |
+| `s`       | Write out the top char in the stack to stdout.                             | `9 1 : 6 + d s` outputs 'a'           |
 | `{`       | Rotates the top element to the left.                                       | `1 2 3 {` becomes [2, 3, 1]           |
 | `}`       | Rotates the top element to the right.                                      | `1 2 3 }` becomes [3, 1, 2]           |
 | `U`       | Removes all falsey elements from the stack.                                | `2 3 > U 7` becomes [7]               |
