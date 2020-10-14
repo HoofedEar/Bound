@@ -45,7 +45,8 @@ Stack-based interpreted esolang involving integers and single char commands. Ins
 | `n`       | Sums of all ints in the stack.                                             | `5 5 5 n` becomes [15]                |
 | `I`       | Increments the top element of the stack.                                   | `0 I I` becomes [2]                   |
 | `D`       | Decrements the top element of the stack.                                   | `7 D D` becomes [5]                   |
-| `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     |  
+| `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     | 
+| `b`       | Splits the top element into seprate integers                               | `6 ! b` becomes [7, 2, 0]             |
 
 
 `10:42:d*10:RS`
