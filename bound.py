@@ -243,7 +243,7 @@ def main(c):
 				stack[:] = [x for x in stack if x != 0]
 
 		if current == 'R': # Repeat the next command equal to the top value 
-			if len(stack) >= 2:
+			if len(stack) >= 1:
 				if isinstance(stack[-1], int):
 					a = stack.pop()
 					for _ in list(range(a - 1)):
@@ -324,6 +324,7 @@ def main(c):
 		if current in numlist:
 			stack.append(int(current))
 
+	print()
 	print(stack)
 
 
