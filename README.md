@@ -48,6 +48,7 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 | `D`       | Decrements the top element of the stack.                                   | `7 D D` becomes [5]                   |
 | `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     | 
 | `b`       | Splits the top element into seprate integers                               | `6 ! b` becomes [7, 2, 0]             |
+| `i`       | Gets input and puts it to the stack if its an int                          |                                       |
 
 
 `10:c42:d*@RS`
