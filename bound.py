@@ -5,7 +5,7 @@ import math
 import random
 from os.path import join,basename,splitext
 
-VERSION = "v0.1.7"
+VERSION = "v0.2.0"
 numlist = "0123456789"
 
 def main(c):
@@ -324,7 +324,7 @@ def main(c):
 		if current in numlist:
 			stack.append(int(current))
 
-	print()
+	print(stack)
 
 
 
