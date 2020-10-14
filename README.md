@@ -1,5 +1,5 @@
 # βound
-Stack-based esolang involving integers. Inspired by Stuck.  
+Stack-based interpreted esolang involving integers and single char commands. Inspired by Stuck.  
   
 ## Usage
 `python bound.py`  
