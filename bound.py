@@ -89,6 +89,8 @@ def main(c):
 						stack.append(math.ceil(b / a))
 					except TypeError:
 						continue
+					except ZeroDivisionError:
+						continue
 
 		if current == '\\': # Divide, round down
 			if len(stack) >= 2:
@@ -98,6 +100,8 @@ def main(c):
 						b = stack.pop()
 						stack.append(math.floor(b / a))
 					except TypeError:
+						continue
+					except ZeroDivisionError:
 						continue
 
 		if current == '^': # Power
