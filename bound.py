@@ -311,6 +311,13 @@ def main(c):
 					for i in list(map(int, str(a))):
 						stack.append(i)
 
+		if current == 'i': # Gets input of an integer
+			a = input()
+			try:
+				stack.append(int(a))
+			except ValueError:
+				continue
+
 		if current in numlist:
 			stack.append(int(current))
 
