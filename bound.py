@@ -192,11 +192,11 @@ def main(c):
 				stack = list(map(int, str(stack[-1])))
 
 		if current == '@': # Reverse stack
-			if len(stack) >= 1:
+			if len(stack) >= 2:
 					stack = list(reversed(stack))
 
 		if current == '$': # sort the stack
-			if len(stack) >= 1:
+			if len(stack) >= 2:
 					stack = list(sorted(stack))
 
 		if current == 'd': # turn the top integer into a char
@@ -207,15 +207,13 @@ def main(c):
 		if current == '\'': # Top char is converted to int
 			if len(stack) >= 1:
 				if type(stack[-1]) is str:
-					c = stack.pop()
-					stack.append(ord(c))
+					a = stack.pop()
+					stack.append(ord(a))
 
 		if current == 's': # Write out each char in the stack
 			if len(stack) >= 1:
-				for x in stack:
-					if type(x) is str:
-						sys.stdout.write(x)
-				print()
+				if type(stack[-1]) is str:
+					sys.stdout.write(stack[-1])
 
 		if current == '{': # Rotate top element to the left
 			if len(stack) >= 1:
@@ -232,8 +230,8 @@ def main(c):
 		if current == 'R': # Repeat the next command equal to the top value 
 			if len(stack) >= 1:
 				if type(stack[-1]) is int:
-					r = stack.pop()
-					for _ in list(range(r - 1)):
+					a = stack.pop()
+					for _ in list(range(a - 1)):
 						source.append(source[-1])
 						length = len(source)
 
@@ -255,8 +253,8 @@ def main(c):
 		if current == '&': # Puts elements from 1 to n, exclusively (expANDs)
 			if len(stack) >= 1:
 				if type(stack[-1]) is int:
-					d = stack.pop()
-					exp = range(1, d+1)
+					a = stack.pop()
+					exp = range(1, a+1)
 					for i in list(exp):
 						stack.append(i)
 
@@ -276,20 +274,20 @@ def main(c):
 		if current == 'I': # Increment the top of the stack 
 			if len(stack) >= 1:
 				if type(stack[-1]) is int:
-					i = stack.pop()
-					stack.append(i + 1)
+					a = stack.pop()
+					stack.append(a + 1)
 
 		if current == 'D': # Decrement the top of the stack 
 			if len(stack) >= 1:
 				if type(stack[-1]) is int:
-					i = stack.pop()
-					stack.append(i - 1)
+					a = stack.pop()
+					stack.append(a - 1)
 			
 		if current == '?': # Check if the top of the stack is even
 			if len(stack) >= 1:
 				if type(stack[-1]) is int:
-					e = stack.pop()
-					if (e % 2 == 0):
+					a = stack.pop()
+					if (a % 2 == 0):
 						stack.append(1)
 					else:
 						stack.append(0)
@@ -297,8 +295,8 @@ def main(c):
 		if current == '(':
 			if len(stack) >= 1:
 					if type(stack[-1]) is int:
-						r = stack.pop()
-						for _ in list(range(r - 1)):
+						a = stack.pop()
+						for _ in list(range(a - 1)):
 							source.append(source[-1])
 							length = len(source)
 
