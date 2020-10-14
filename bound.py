@@ -26,7 +26,6 @@ def main(c):
 		if debug == True:
 			print("> " + current)
 
-
 		if current == '`': # Get Input
 			debug = True
 
@@ -35,7 +34,7 @@ def main(c):
 
 		if current == '+': # Addition
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -45,7 +44,7 @@ def main(c):
 
 		if current == '-': # Subtraction
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -55,14 +54,14 @@ def main(c):
 
 		if current == '*': # Multiplication
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
 						stack.append(b * a)
 					except TypeError:
 						continue
-				if type(stack[-1]) is str and type(stack[-2]) is int:
+				if isinstance(stack[-1], str) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop() # the str
 						b = stack.pop() # the int
@@ -72,7 +71,7 @@ def main(c):
 
 		if current == '%': # Modulo
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -82,7 +81,7 @@ def main(c):
 
 		if current == '/': # Divide, round up
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -94,7 +93,7 @@ def main(c):
 
 		if current == '\\': # Divide, round down
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int: 
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int): 
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -106,7 +105,7 @@ def main(c):
 
 		if current == '^': # Power
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -116,7 +115,7 @@ def main(c):
 
 		if current == '#': # Square
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					try:
 						a = stack.pop()
 						stack.append(a ** 2)
@@ -125,7 +124,7 @@ def main(c):
 
 		if current == '>': # Greater than
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -138,7 +137,7 @@ def main(c):
 
 		if current == '<': # Less than
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -151,7 +150,7 @@ def main(c):
 
 		if current == '=': # Integer Comparison
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -164,7 +163,7 @@ def main(c):
 
 		if current == '|': # Absolute value
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					try:
 						a = stack.pop()
 						stack.append(abs(a))
@@ -173,7 +172,7 @@ def main(c):
 
 		if current == '!': # Factorial
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					try:
 						a = stack.pop()
 						stack.append(math.factorial(a))
@@ -212,23 +211,23 @@ def main(c):
 
 		if current == 'd': # turn the top integer into a char
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					stack.append(chr(stack.pop()))
 
 		if current == '\'': # Top char is converted to int
 			if len(stack) >= 1:
-				if type(stack[-1]) is str:
+				if isinstance(stack[-1], str):
 					a = stack.pop()
 					stack.append(ord(a))
 
 		if current == 's': # Write out each char in the stack
 			if len(stack) >= 1:
-				if type(stack[-1]) is str:
+				if isinstance(stack[-1], str):
 					sys.stdout.write(stack[-1])
 		
 		if current == 'S': # Prints out the top string
 			if len(stack) >= 1:
-				if type(stack[-1]) is str:
+				if isinstance(stack[-1], str):
 					print(stack[-1])
 
 		if current == '{': # Rotate top element to the left
@@ -245,7 +244,7 @@ def main(c):
 
 		if current == 'R': # Repeat the next command equal to the top value 
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					a = stack.pop()
 					for _ in list(range(a - 1)):
 						source.append(source[-1])
@@ -254,7 +253,7 @@ def main(c):
 
 		if current == ':': # Combines the top two elements if they are integers
 			if len(stack) >= 2:
-				if type(stack[-1]) is int and type(stack[-2]) is int:
+				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
 					try:
 						a = stack.pop()
 						b = stack.pop()
@@ -268,7 +267,7 @@ def main(c):
 
 		if current == '&': # Puts elements from 1 to n, exclusively (expANDs)
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					a = stack.pop()
 					exp = range(1, a+1)
 					for i in list(exp):
@@ -282,26 +281,26 @@ def main(c):
 			if len(stack) >= 1:
 				total = 0
 				for i in stack:
-					if type(i) is int:
+					if isinstance(i, int):
 						total += i
 				stack = [x for x in stack if not isinstance(x, int)]
 				stack.append(total)
 
 		if current == 'I': # Increment the top of the stack 
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					a = stack.pop()
 					stack.append(a + 1)
 
 		if current == 'D': # Decrement the top of the stack 
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					a = stack.pop()
 					stack.append(a - 1)
 			
 		if current == '?': # Check if the top of the stack is even
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					a = stack.pop()
 					if (a % 2 == 0):
 						stack.append(1)
@@ -310,7 +309,7 @@ def main(c):
 
 		if current == 'b': # Breaks apart the top int into seprate integers
 			if len(stack) >= 1:
-				if type(stack[-1]) is int:
+				if isinstance(stack[-1], int):
 					a = stack.pop()
 					for i in list(map(int, str(a))):
 						stack.append(i)
