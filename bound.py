@@ -62,6 +62,13 @@ def main(c):
 						stack.append(b * a)
 					except TypeError:
 						continue
+				if type(stack[-1]) is str and type(stack[-2]) is int:
+					try:
+						a = stack.pop() # the str
+						b = stack.pop() # the int
+						stack.append(b * a)
+					except TypeError:
+						continue
 
 		if current == '%': # Modulo
 			if len(stack) >= 2:
@@ -214,6 +221,11 @@ def main(c):
 			if len(stack) >= 1:
 				if type(stack[-1]) is str:
 					sys.stdout.write(stack[-1])
+		
+		if current == 'S': # Prints out the top string
+			if len(stack) >= 1:
+				if type(stack[-1]) is str:
+					print(stack[-1])
 
 		if current == '{': # Rotate top element to the left
 			if len(stack) >= 1:
