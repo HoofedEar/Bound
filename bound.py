@@ -23,7 +23,7 @@ def main(c):
 		except IndexError:
 			break
 
-		if debug == True:
+		if debug:
 			print("> " + current)
 
 		if current == '`': # Get Input
