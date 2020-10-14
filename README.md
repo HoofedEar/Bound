@@ -50,4 +50,4 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 | `b`       | Splits the top element into seprate integers                               | `6 ! b` becomes [7, 2, 0]             |
 
 
-`10:42:d*10:RS`
+`10:c42:d*@RS`
