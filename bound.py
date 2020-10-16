@@ -14,7 +14,6 @@ def main(c):
 	source = list(reversed(source))
 	length = len(source)
 	var = ''
-	debug = False
 	stack = []
 
 	while length != 0:
@@ -22,12 +21,6 @@ def main(c):
 			current = source.pop()
 		except IndexError:
 			break
-
-		if debug:
-			print("> " + current)
-
-		if current == '`': # Get Input
-			debug = True
 
 		if current == '.': # Output stack
 			print(stack)
