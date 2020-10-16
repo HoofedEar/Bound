@@ -5,7 +5,7 @@ import math
 import random
 from os.path import join,basename,splitext
 
-VERSION = "v0.2.0"
+VERSION = "v0.2.1"
 numlist = "0123456789"
 
 def main(c):
@@ -317,6 +317,28 @@ def main(c):
 					for i in list(map(int, str(a))):
 						stack.append(i)
 
+		if current == '(': # Loop until )
+			if len(stack) >= 1:
+				if isinstance(stack[-1], int):
+					a = stack.pop()
+					track = True
+					group = ''
+					offset = 0
+					for i in list(reversed(source)):
+						if track:
+							if i != ')':
+								group += i
+								offset += 1
+							else:
+								track = False
+
+					for i in list(range(0, offset)):
+						source.pop()
+					source += reversed(group * a)
+					length = len(source)
+
+
+
 		if current == 'i': # Gets input of an integer
 			a = input()
 			try:
@@ -329,8 +351,6 @@ def main(c):
 
 	print()
 	print(stack)
-
-
 
 
 if __name__ == "__main__":
