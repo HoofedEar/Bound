@@ -330,7 +330,9 @@ def main(c):
 					source += reversed(group * a)
 					length = len(source)
 
-
+		if current == '_':
+			if len(stack) >= 1:
+				stack.append(len(stack))
 
 		if current == 'i': # Gets input of an integer
 			a = input()
