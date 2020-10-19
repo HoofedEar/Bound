@@ -311,7 +311,7 @@ def main(c):
 			if len(stack) >= 1:
 				if isinstance(stack[-1], int):
 					a = stack.pop()
-					for i in list(map(int, str(a))):
+					for i in list(map(int, str(abs(a)))):
 						stack.append(i)
 
 		if current == '(': # Loop until )
