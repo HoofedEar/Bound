@@ -213,15 +213,19 @@ def main(c):
 					a = stack.pop()
 					stack.append(ord(a))
 
-		if current == 's': # Write out each char in the stack
+		if current == 's': # Write out top element
 			if len(stack) >= 1:
 				if isinstance(stack[-1], str):
 					sys.stdout.write(stack[-1])
+				else:
+					sys.stdout.write(str(stack[-1]))
 		
-		if current == 'S': # Prints out the top string
+		if current == 'S': # Prints out the top element
 			if len(stack) >= 1:
 				if isinstance(stack[-1], str):
 					print(stack[-1])
+				else:
+					print(str(stack[-1]))
 
 		if current == '{': # Rotate top element to the left
 			if len(stack) >= 1:
@@ -330,7 +334,7 @@ def main(c):
 					source += reversed(group * a)
 					length = len(source)
 
-		if current == '_':
+		if current == '_': # Add the number of elements in the stacks to the stack
 			if len(stack) >= 1:
 				stack.append(len(stack))
 
