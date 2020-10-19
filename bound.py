@@ -5,7 +5,7 @@ import math
 import random
 from os.path import join,basename,splitext
 
-VERSION = "v0.2.1"
+VERSION = "v0.2.2"
 numlist = "0123456789"
 
 def main(c):
