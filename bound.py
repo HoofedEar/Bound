@@ -192,7 +192,7 @@ def main(c):
 
 		if current == ',': # Remove all but top
 			if len(stack) >= 2:
-				stack = list(map(int, str(stack[-1])))
+				stack = [stack[-1]]
 
 		if current == '@': # Reverse stack
 			if len(stack) >= 2:
