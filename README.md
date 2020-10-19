@@ -51,6 +51,12 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 | `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     | 
 | `b`       | Splits the top element into seprate integers                               | `6 ! b` becomes [7, 2, 0]             |
 | `i`       | Gets input and puts it to the stack if its an int                          |                                       |
+| `_`       | Puts the total number of elements onto the stack.                          | `9 1 2 _` becomes [9, 1, 2, 3]        | 
+  
+Experimental  
+| Command | Function                                                                     | Example                               |
+|-----------|----------------------------------------------------------------------------|---------------------------------------|
 | `(`       | Repeat the following elements equal to the top element, until `)`          | *nesting is not supported*            |
-
-`10:c42:d*@RS`
+  
+  
+  `10:c42:d*@RS`
