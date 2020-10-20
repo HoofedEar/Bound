@@ -12,7 +12,7 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 
 | Command | Function                                                                     | Example                               |
 |-----------|----------------------------------------------------------------------------|---------------------------------------|
-| `0-9`     | Puts the integer on top of the stack.                                      | `1 4 5` becomes [1, 4, 5]             |
+| `0`-`9`   | Puts the integer on top of the stack.                                      | `1 4 5` becomes [1, 4, 5]             |
 | `.`       | Prints out the current stack.                                              | `1 2 3 .` prints [1, 2, 3]            |
 | `+`       | Sum of the top two elements.                                               | `2 2 +` becomes [4]                   |
 | `-`       | Subtract the top element from the second top element.                      | `3 2 -` becomes [1]                   |
@@ -35,8 +35,8 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 | `$`       | Sort the stack.                                                            | `3 1 2 $` becomes [1, 2, 3]           |
 | `d`       | Convert the top integer into a char.                                       | `9 7 : d` becomes ['a']               |
 | `'`       | The top element is converted into an integer, if char.                     | `9 7 : d c '` becomes ['a', 97]       |
-| `s`       | Write out the top string in the stack to stdout.                           | `9 1 : 6 + d s` outputs 'a'           |
-| `S`       | Prints out the top string in the stack to stdout.                          | `9 1 : 6 + d S` outputs 'a'           |
+| `s`       | Writes out the top element in the stack to stdout.                         | `9 1 : 6 + d s` outputs 'a'           |
+| `S`       | Writes out the top element in the stack to stdout, with newline.           | `9 1 : 6 + d S` outputs '\na'         |
 | `{`       | Rotates the top element to the left.                                       | `1 2 3 {` becomes [2, 3, 1]           |
 | `}`       | Rotates the top element to the right.                                      | `1 2 3 }` becomes [3, 1, 2]           |
 | `U`       | Removes all falsey elements from the stack.                                | `2 3 > U 7` becomes [7]               |
@@ -45,7 +45,7 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 | `c`       | Puts a copy of the top element onto the stack.                             | `4 3 c c` becomes [4, 3, 3, 3]        |
 | `&`       | Puts elements 1 to n onto the stack, exclusively.                          | `5 &` becomes [1, 2, 3, 4, 5]         |
 | `~`       | Randomizes the stack.                                                      |                                       |
-| `n`       | Sums of all ints in the stack.                                             | `5 5 5 n` becomes [15]                |
+| `n`       | Sums all ints in the stack together.                                       | `5 5 5 n` becomes [15]                |
 | `I`       | Increments the top element of the stack.                                   | `0 I I` becomes [2]                   |
 | `D`       | Decrements the top element of the stack.                                   | `7 D D` becomes [5]                   |
 | `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     | 
