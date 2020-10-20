@@ -52,7 +52,7 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 | `i`       | Gets input and puts it to the stack if its an int                          |                                       |
 | `_`       | Puts the total number of elements onto the stack.                          | `9 1 2 _` becomes [9, 1, 1, 3]        | 
   
-**Experimental  **
+**Experimental**  
 | Command | Function                                                                     | Example                               |
 |-----------|----------------------------------------------------------------------------|---------------------------------------|
 | `(`       | Repeat the following elements equal to the top element, until `)`          | *nesting is not supported*            |
