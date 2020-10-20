@@ -13,7 +13,6 @@ I'm working on this often, sometimes adding/changing the behavior of commands. O
 | Command | Function                                                                     | Example                               |
 |-----------|----------------------------------------------------------------------------|---------------------------------------|
 | `0`-`9`   | Puts the integer on top of the stack.                                      | `1 4 5` becomes [1, 4, 5]             |
-| `.`       | Prints out the current stack.                                              | `1 2 3 .` prints [1, 2, 3]            |
 | `+`       | Sum of the top two elements.                                               | `2 2 +` becomes [4]                   |
 | `-`       | Subtract the top element from the second top element.                      | `3 2 -` becomes [1]                   |
 | `*`       | Multiply the top two elements together.                                    | `5 3 *` becomes [15]                  |
@@ -57,6 +56,6 @@ Experimental
 | Command | Function                                                                     | Example                               |
 |-----------|----------------------------------------------------------------------------|---------------------------------------|
 | `(`       | Repeat the following elements equal to the top element, until `)`          | *nesting is not supported*            |
-  
+| `.`       | Prints out the stack. (By default, Bound does this at the end of execution.)| `1 2 3 .` prints [1, 2, 3]           |  
   
   `10:c42:d*@RS`
