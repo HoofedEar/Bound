@@ -5,7 +5,7 @@ import math
 import random
 from os.path import join,basename,splitext
 
-VERSION = "v0.2.2"
+VERSION = "v0.2.3f"
 numlist = "0123456789"
 
 def main(c):
@@ -15,6 +15,7 @@ def main(c):
 	length = len(source)
 	var = ''
 	stack = []
+	output = False
 
 	while length != 0:
 		try:
@@ -22,8 +23,8 @@ def main(c):
 		except IndexError:
 			break
 
-		if current == '.': # Output stack
-			print(stack)
+		if current == '.': # Toggle stack output at end of execution
+			output = not output
 
 		if current == '+': # Addition
 			if len(stack) >= 2:
@@ -314,26 +315,6 @@ def main(c):
 					for i in list(map(int, str(abs(a)))):
 						stack.append(i)
 
-		if current == '(': # Loop until )
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					a = stack.pop()
-					track = True
-					group = ''
-					offset = 0
-					for i in list(reversed(source)):
-						if track:
-							if i != ')':
-								group += i
-								offset += 1
-							else:
-								track = False
-
-					for i in list(range(0, offset)):
-						source.pop()
-					source += reversed(group * a)
-					length = len(source)
-
 		if current == '_': # Add the number of elements in the stacks to the stack
 			if len(stack) >= 1:
 				stack.append(len(stack))
@@ -349,7 +330,8 @@ def main(c):
 			stack.append(int(current))
 
 	print()
-	print(stack)
+	if output:
+		print(stack)
 
 
 if __name__ == "__main__":
