@@ -1,8 +1,7 @@
 # βound  
 [![CodeFactor](https://www.codefactor.io/repository/github/hoofedear/bound/badge/main)](https://www.codefactor.io/repository/github/hoofedear/bound/overview/main)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)  
-Stack-based interpreted esolang involving integers and single char commands. Inspired by Stuck.  
-I'm working on this often, sometimes adding/changing the behavior of commands. Once I reach a point I am happy with, v1.0 will be released.  
+Stack-based interpreted esolang involving integers and single char commands. Inspired by Stuck.    
   
 ## Usage
 `python3 bound.py`  
