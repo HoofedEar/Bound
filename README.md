@@ -25,7 +25,7 @@ Stack-based interpreted esolang involving integers and single char commands. Ins
 | `>`       | Greater than involving the top two elements. (0=False,1=True)              | `2 3 >` becomes [0]                   |
 | `<`       | Less than involving the top two elements.                                  | `2 3 <` becomes [1]                   |
 | `=`       | Integer comparison with top two elements.                                  | `3 3 =` becomes [1]                   |
-| `--`      | Absolute value of the top most element.                                    | `2 3 - \|` becomes [1]                |
+| `|`      | Absolute value of the top most element.                                    | `2 3 - \|` becomes [1]                |
 | `g`       | Pop the top value and store it.                                            | `5 3 2 g` becomes [5, 3]              |
 | `G`       | Add to the top of the stack the stored element, if it exists.              | `7 2 g 8 G` becomes [7, 8, 2]            |
 | `;`       | Swap the top two elements.                                                 | `1 7 ;` becomes [7, 1]                |
