@@ -8,7 +8,7 @@ import sys
 import math
 import random
 
-VERSION = "v0.3"
+VERSION = "v0.3f"
 
 
 class Interpreter:
@@ -25,7 +25,7 @@ class Interpreter:
         self.stack_var = ''
         self.output: bool = False
         self.number_list: str = "0123456789"
-        self.current = ''
+        #self.current = ''
 
     def debug(self):
         """Debug function for debugging"""
@@ -452,13 +452,11 @@ class Interpreter:
                     self.stack.append(int(self.current))
 
         print()
-        if self.output:
-            print(self.stack)
+        print(self.stack)
 
 
 def main():
     """Main function that handles input"""
-
     print(f"=Bound {VERSION}=")
     if len(sys.argv) == 1:
         while True:
