@@ -1,351 +1,479 @@
-import importlib
+"""
+Bound Interpreter
+v0.3f
+by HoofedEar
+"""
+
 import sys
-import glob
 import math
 import random
-from os.path import join,basename,splitext
 
-VERSION = "v0.2.3f"
-numlist = "0123456789"
-
-def main(c):
-	c = c.replace(" ", "")
-	source = [char for char in c]
-	source = list(reversed(source))
-	length = len(source)
-	var = ''
-	stack = []
-	output = False
-
-	while length != 0:
-		try:
-			current = source.pop()
-		except IndexError:
-			break
-
-		if current == '.': # Toggle stack output at end of execution
-			output = not output
-
-		if current == '+': # Addition
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(b + a)
-					except TypeError:
-						continue
-
-		if current == '-': # Subtraction
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(b - a)
-					except TypeError:
-						continue
-
-		if current == '*': # Multiplication
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(b * a)
-					except TypeError:
-						continue
-				if isinstance(stack[-1], str) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop() # the str
-						b = stack.pop() # the int
-						stack.append(b * a)
-					except TypeError:
-						continue
-
-		if current == '%': # Modulo
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(b % a)
-					except TypeError:
-						continue
-
-		if current == '/': # Divide, round up
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(math.ceil(b / a))
-					except TypeError:
-						continue
-					except ZeroDivisionError:
-						continue
-
-		if current == '\\': # Divide, round down
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int): 
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(math.floor(b / a))
-					except TypeError:
-						continue
-					except ZeroDivisionError:
-						continue
-
-		if current == '^': # Power
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(b ** a)
-					except TypeError:
-						continue
-
-		if current == '#': # Square
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					try:
-						a = stack.pop()
-						stack.append(a ** 2)
-					except TypeError:
-						continue
-
-		if current == '>': # Greater than
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						if (b > a):
-							stack.append(1)
-						else:
-							stack.append(0)
-					except TypeError:
-						continue
-
-		if current == '<': # Less than
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						if (b < a):
-							stack.append(1)
-						else:
-							stack.append(0)
-					except TypeError:
-						continue
-
-		if current == '=': # Integer Comparison
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						if (b == a):
-							stack.append(1)
-						else:
-							stack.append(0)
-					except TypeError:
-						continue
-
-		if current == '|': # Absolute value
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					try:
-						a = stack.pop()
-						stack.append(abs(a))
-					except TypeError:
-						continue
-
-		if current == '!': # Factorial
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					try:
-						a = stack.pop()
-						stack.append(math.factorial(a))
-					except TypeError:
-						continue
-
-		if current == 'g': # Pop and save in var
-			if len(stack) >= 1:
-				var = stack.pop()
-
-		if current == 'G': # Replace top value with var and clear
-			if len(stack) >= 1:
-				if var != '':
-					stack.pop()
-					stack.append(var)
-					var = ''
-
-		if current == ';': # Swap top two elements
-			if len(stack) >= 2:
-				a = stack[-1]
-				b = stack[-2]
-				stack[-1] = b
-				stack[-2] = a
-
-		if current == ',': # Remove all but top
-			if len(stack) >= 2:
-				stack = [stack[-1]]
-
-		if current == '@': # Reverse stack
-			if len(stack) >= 2:
-					stack = list(reversed(stack))
-
-		if current == '$': # sort the stack
-			if len(stack) >= 2:
-					stack = list(sorted(stack))
-
-		if current == 'd': # turn the top integer into a char
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					stack.append(chr(stack.pop()))
-
-		if current == '\'': # Top char is converted to int
-			if len(stack) >= 1:
-				if isinstance(stack[-1], str):
-					a = stack.pop()
-					stack.append(ord(a))
-
-		if current == 's': # Write out top element
-			if len(stack) >= 1:
-				if isinstance(stack[-1], str):
-					sys.stdout.write(stack[-1])
-				else:
-					sys.stdout.write(str(stack[-1]))
-		
-		if current == 'S': # Prints out the top element
-			if len(stack) >= 1:
-				if isinstance(stack[-1], str):
-					print(stack[-1])
-				else:
-					print(str(stack[-1]))
-
-		if current == '{': # Rotate top element to the left
-			if len(stack) >= 1:
-				stack = stack[1:] + stack[:1]
-
-		if current == '}': # Rotate top element to the right
-			if len(stack) >= 1:
-				stack = stack[-1:] + stack[:-1]
-
-		if current == 'U': # Remove all falsy elements
-			if len(stack) >= 1:
-				stack[:] = [x for x in stack if x != 0]
-
-		if current == 'R': # Repeat the next command equal to the top value 
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					a = stack.pop()
-					for _ in list(range(a - 1)):
-						try:
-							source.append(source[-1])
-							length = len(source)
-						except IndexError:
-							continue
+VERSION = "v0.3f"
 
 
-		if current == ':': # Combines the top two elements if they are integers
-			if len(stack) >= 2:
-				if isinstance(stack[-1], int) and isinstance(stack[-2], int):
-					try:
-						a = stack.pop()
-						b = stack.pop()
-						stack.append(int(str(b) + str(a)))
-					except TypeError:
-						continue
+class Interpreter:
+    """
+    Interpreter class
+    code = code to be executed by the interpreter
+    """
+    def __init__(self, code):
+        self.code = code
+        self.code = self.code.replace(" ", "")
+        self.tape = list(reversed(self.code))
+        self.tape_length = len(self.tape)
+        self.stack = []
+        self.stack_var = ''
+        self.output: bool = False
+        self.number_list: str = "0123456789"
+        #self.current = ''
 
-		if current == 'c': # Put a copy of the top element
-			if len(stack) >= 1:
-				stack.append(stack[-1])
+    def debug(self):
+        """Debug function for debugging"""
+        print(self.code)
+        print(self.tape)
+        print(self.current)
 
-		if current == '&': # Puts elements from 1 to n, exclusively (expANDs)
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					a = stack.pop()
-					exp = range(1, a+1)
-					for i in list(exp):
-						stack.append(i)
+    def addition(self):
+        """Add the top two elements of the stack"""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    self.stack.append(_b + _a)
+                except TypeError:
+                    print("TypeError! at " + self.current)
 
-		if current == '~': # Randomize the stack lol
-			if len(stack) >= 2:
-				random.shuffle(stack)
+    def subtraction(self):
+        """Subtract the top element from the second top element."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    self.stack.append(_b - _a)
+                except TypeError:
+                    print("TypeError! at " + self.current)
 
-		if current == 'n': # Puts the sum of all ints on the stack
-			if len(stack) >= 1:
-				total = 0
-				for i in stack:
-					if isinstance(i, int):
-						total += i
-				stack = [x for x in stack if not isinstance(x, int)]
-				stack.append(total)
+    def multiplication(self):
+        """Multiply the top two elements together."""
+        if len(self.stack) >= 2:
+            try:
+                _a = self.stack.pop()  # the str
+                _b = self.stack.pop()  # the int
+                self.stack.append(_b * _a)
+            except TypeError:
+                print("TypeError! at " + self.current)
 
-		if current == 'I': # Increment the top of the stack 
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					a = stack.pop()
-					stack.append(a + 1)
+    def modulo(self):
+        """Modulo with the top two elements."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    self.stack.append(_b % _a)
+                except TypeError:
+                    print("TypeError! at " + self.current)
 
-		if current == 'D': # Decrement the top of the stack 
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					a = stack.pop()
-					stack.append(a - 1)
-			
-		if current == '?': # Check if the top of the stack is even
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					a = stack.pop()
-					if (a % 2 == 0):
-						stack.append(1)
-					else:
-						stack.append(0)
+    def divide_up(self):
+        """Divide the second top element by the top element, rounded up."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    self.stack.append(math.ceil(int(_b) / int(_a)))
+                except TypeError:
+                    print("TypeError! at " + self.current)
+                except ZeroDivisionError:
+                    print("Divided by Zero! at " + self.current)
 
-		if current == 'b': # Breaks apart the top int into seprate integers
-			if len(stack) >= 1:
-				if isinstance(stack[-1], int):
-					a = stack.pop()
-					for i in list(map(int, str(abs(a)))):
-						stack.append(i)
+    def divide_down(self):
+        """Divide the second top element by the top element, rounded down."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    self.stack.append(math.floor(int(_b) / int(_a)))
+                except TypeError:
+                    print("TypeError! at " + self.current)
+                except ZeroDivisionError:
+                    print("Divided by Zero! at " + self.current)
 
-		if current == '_': # Add the number of elements in the stacks to the stack
-			if len(stack) >= 1:
-				stack.append(len(stack))
+    def exponent(self):
+        """Multiply the second element to the power of the top element."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    self.stack.append(_b ** _a)
+                except TypeError:
+                    print("TypeError! at " + self.current)
 
-		if current == 'i': # Gets input of an integer
-			a = input()
-			try:
-				stack.append(int(a))
-			except ValueError:
-				continue
+    def square(self):
+        """Square the top element."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                try:
+                    _a = self.stack.pop()
+                    self.stack.append(_a ** 2)
+                except TypeError:
+                    print("TypeError! at " + self.current)
 
-		if current in numlist:
-			stack.append(int(current))
+    def greater_than(self):
+        """Greater than involving the top two elements."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    if _b > _a:
+                        self.stack.append(1)
+                    else:
+                        self.stack.append(0)
+                except TypeError:
+                    print("TypeError! at " + self.current)
 
-	print()
-	if output:
-		print(stack)
+    def less_than(self):
+        """Less than involving the top two elements."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    if _b < _a:
+                        self.stack.append(1)
+                    else:
+                        self.stack.append(0)
+                except TypeError:
+                    print("TypeError! at " + self.current)
+
+    def comparison(self):
+        """Integer comparison with top two elements."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    if _b == _a:
+                        self.stack.append(1)
+                    else:
+                        self.stack.append(0)
+                except TypeError:
+                    print("TypeError! at " + self.current)
+
+    def absolute_value(self):
+        """Absolute value of the top most element."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                try:
+                    _a = self.stack.pop()
+                    self.stack.append(abs(_a))
+                except TypeError:
+                    print("TypeError! at " + self.current)
+
+    def put_var(self):
+        """Add to the top of the stack the stored element, if it exists."""
+        if len(self.stack) >= 1:
+            if self.stack_var != '':
+                self.stack.append(self.stack_var)
+                self.stack_var = ''
+
+    def factorial(self):
+        """Factorial the top element."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                try:
+                    _a = self.stack.pop()
+                    self.stack.append(math.factorial(_a))
+                except TypeError:
+                    print("TypeError! at " + self.current)
+
+    def swap(self):
+        """Swap the top two elements."""
+        if len(self.stack) >= 2:
+            _a = self.stack[-1]
+            _b = self.stack[-2]
+            self.stack[-1] = _b
+            self.stack[-2] = _a
+
+    def isolate(self):
+        """Remove all but the top element."""
+        if len(self.stack) >= 2:
+            self.stack = [self.stack[-1]]
+
+    def reverse(self):
+        """Reverses the stack."""
+        if len(self.stack) >= 2:
+            self.stack = list(reversed(self.stack))
+
+    def capture(self):
+        """Add to the top of the stack the stored element, if it exists."""
+        if len(self.stack) >= 1:
+            self.stack_var = self.stack.pop()
+
+    def sort(self):
+        """Sort the stack."""
+        if len(self.stack) >= 2:
+            self.stack = list(sorted(self.stack))
+
+    def to_char(self):
+        """Convert the top integer into a char."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                self.stack.append(chr(self.stack.pop()))
+
+    def to_int(self):
+        """The top element is converted into an integer, if char."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], str):
+                _a = self.stack.pop()
+                self.stack.append(ord(_a))
+
+    def write(self):
+        """Writes out the top element in the stack to stdout."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], str):
+                sys.stdout.write(self.stack[-1])
+            else:
+                sys.stdout.write(str(self.stack[-1]))
+
+    def print(self):
+        """Writes out the top element in the stack to stdout, with newline."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], str):
+                print(self.stack[-1])
+            else:
+                print(str(self.stack[-1]))
+
+    def wrap_left(self):
+        """Rotates the top element to the left."""
+        if len(self.stack) >= 1:
+            self.stack = self.stack[1:] + self.stack[:1]
+
+    def wrap_right(self):
+        """Rotates the top element to the right."""
+        if len(self.stack) >= 1:
+            self.stack = self.stack[-1:] + self.stack[:-1]
+
+    def expel_false(self):
+        """Removes all falsey elements from the stack."""
+        if len(self.stack) >= 1:
+            self.stack[:] = [x for x in self.stack if x != 0]
+
+    def repeat(self):
+        """Repeats the next command n times, where n is top value."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                _a = self.stack.pop()
+                for _ in list(range(_a - 1)):
+                    try:
+                        self.tape.append(self.tape[-1])
+                        self.tape_length = len(self.tape)
+                    except IndexError:
+                        print("IndexError! at " + self.current)
+
+    def combine(self):
+        """Combines the top two values into one if they are both ints."""
+        if len(self.stack) >= 2:
+            if isinstance(self.stack[-1], int) and isinstance(self.stack[-2], int):
+                try:
+                    _a = self.stack.pop()
+                    _b = self.stack.pop()
+                    self.stack.append(int(str(_b) + str(_a)))
+                except TypeError:
+                    print("TypeError! at " + self.current)
+
+    def copy(self):
+        """Puts a copy of the top element onto the stack."""
+        if len(self.stack) >= 1:
+            self.stack.append(self.stack[-1])
+
+    def expand(self):
+        """Puts elements 1 to n onto the stack, exclusively."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                _a = self.stack.pop()
+                _exp = range(1, _a + 1)
+                for i in list(_exp):
+                    self.stack.append(i)
+
+    def randomize(self):
+        """Randomizes the stack."""
+        if len(self.stack) >= 2:
+            random.shuffle(self.stack)
+
+    def sum_all(self):
+        """Sums all ints in the stack together."""
+        if len(self.stack) >= 1:
+            _total = 0
+            for i in self.stack:
+                if isinstance(i, int):
+                    _total += i
+            self.stack = [x for x in self.stack if not isinstance(x, int)]
+            self.stack.append(_total)
+
+    def increment(self):
+        """Increments the top element of the stack."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                _a = self.stack.pop()
+                self.stack.append(_a + 1)
+
+    def decrement(self):
+        """Decrements the top element of the stack."""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                _a = self.stack.pop()
+                self.stack.append(_a - 1)
+
+    def break_apart(self):
+        """Splits the top element into separate integers"""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                _a = self.stack.pop()
+                for i in list(map(int, str(abs(_a)))):
+                    self.stack.append(i)
+
+    def input(self):
+        """Gets input and puts it to the stack if its an int"""
+        _a = input()
+        try:
+            self.stack.append(int(_a))
+        except ValueError:
+            print("ValueError! at " + self.current)
+
+    def length(self):
+        """Puts the total number of elements onto the stack."""
+        if len(self.stack) >= 1:
+            self.stack.append(len(self.stack))
+
+    def is_even(self):
+        """Checks if the top element is even. (Lazy modulo)"""
+        if len(self.stack) >= 1:
+            if isinstance(self.stack[-1], int):
+                _a = self.stack.pop()
+                if _a % 2 == 0:
+                    self.stack.append(1)
+                else:
+                    self.stack.append(0)
+
+    def start(self):
+        """Executes the loaded code"""
+        while self.tape_length != 0:
+            try:
+                self.current = self.tape.pop()
+            except IndexError:
+                break
+
+            match self.current:
+                case '.':
+                    self.output = not self.output
+                case '+':
+                    self.addition()
+                case '-':
+                    self.subtraction()
+                case '*':
+                    self.multiplication()
+                case '%':
+                    self.modulo()
+                case '/':
+                    self.divide_up()
+                case '\\':
+                    self.divide_down()
+                case '^':
+                    self.exponent()
+                case '#':
+                    self.square()
+                case '>':
+                    self.greater_than()
+                case '<':
+                    self.less_than()
+                case '=':
+                    self.comparison()
+                case '|':
+                    self.absolute_value()
+                case '!':
+                    self.factorial()
+                case 'g':
+                    self.capture()
+                case 'G':
+                    self.put_var()
+                case ';':
+                    self.swap()
+                case ',':
+                    self.isolate()
+                case '@':
+                    self.reverse()
+                case '$':
+                    self.sort()
+                case 'd':
+                    self.to_char()
+                case '\'':
+                    self.to_int()
+                case 's':
+                    self.write()
+                case 'S':
+                    self.print()
+                case '{':
+                    self.wrap_left()
+                case '}':
+                    self.wrap_right()
+                case 'U':
+                    self.expel_false()
+                case 'R':
+                    self.repeat()
+                case ':':
+                    self.combine()
+                case 'c':
+                    self.copy()
+                case '&':
+                    self.expand()
+                case '~':
+                    self.randomize()
+                case 'n':
+                    self.sum_all()
+                case 'I':
+                    self.increment()
+                case 'D':
+                    self.decrement()
+                case 'b':
+                    self.break_apart()
+                case '_':
+                    self.length()
+                case 'i':
+                    self.input()
+                case '?':
+                    self.is_even()
+                case ('0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9'):
+                    self.stack.append(int(self.current))
+
+        print()
+        print(self.stack)
+
+
+def main():
+    """Main function that handles input"""
+    print(f"=Bound {VERSION}=")
+    if len(sys.argv) == 1:
+        while True:
+            print()
+            code = input("β ")
+            if code == "exit":
+                break
+            if code == "":
+                print("Hello, world!")
+            else:
+                interpreter = Interpreter(code)
+                interpreter.start()
+    else:
+        code = sys.argv[1]
+        interpreter = Interpreter(code)
+        interpreter.start()
 
 
 if __name__ == "__main__":
-	print("=Bound %s=" % VERSION)
-	if len(sys.argv) == 1:
-		while True:
-			print()
-			code = input("β ")
-			if code == "exit":
-				break
-			if code == "":
-				print("Hello, world!")
-			else:
-				main(code)
-	else:
-		code = sys.argv[1]
-		main(code)
+    main()

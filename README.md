@@ -25,9 +25,9 @@ Stack-based interpreted esolang involving integers and single char commands. Ins
 | `>`       | Greater than involving the top two elements. (0=False,1=True)              | `2 3 >` becomes [0]                   |
 | `<`       | Less than involving the top two elements.                                  | `2 3 <` becomes [1]                   |
 | `=`       | Integer comparison with top two elements.                                  | `3 3 =` becomes [1]                   |
-| `\|`      | Absolute value of the top most element.                                    | `2 3 - \|` becomes [1]                |
+| `--`      | Absolute value of the top most element.                                    | `2 3 - \|` becomes [1]                |
 | `g`       | Pop the top value and store it.                                            | `5 3 2 g` becomes [5, 3]              |
-| `G`       | Replace the top value with the stored element, if it exists.               | `7 2 g 8 G` becomes [7, 2]            |
+| `G`       | Add to the top of the stack the stored element, if it exists.              | `7 2 g 8 G` becomes [7, 8, 2]            |
 | `;`       | Swap the top two elements.                                                 | `1 7 ;` becomes [7, 1]                |
 | `,`       | Remove all but the top element.                                            | `1 2 3 4 5 ,` becomes [5]             |
 | `@`       | Reverses the stack.                                                        | `1 2 3 @` becomes [3, 2, 1]           |
@@ -35,7 +35,7 @@ Stack-based interpreted esolang involving integers and single char commands. Ins
 | `d`       | Convert the top integer into a char.                                       | `9 7 : d` becomes ['a']               |
 | `'`       | The top element is converted into an integer, if char.                     | `9 7 : d c '` becomes ['a', 97]       |
 | `s`       | Writes out the top element in the stack to stdout.                         | `9 1 : 6 + d s` outputs 'a'           |
-| `S`       | Writes out the top element in the stack to stdout, with newline.           | `9 1 : 6 + d S` outputs '\na'         |
+| `S`       | Writes out the top element in the stack to stdout, with newline.           | `9 1 : 6 + d S` outputs 'a\n'         |
 | `{`       | Rotates the top element to the left.                                       | `1 2 3 {` becomes [2, 3, 1]           |
 | `}`       | Rotates the top element to the right.                                      | `1 2 3 }` becomes [3, 1, 2]           |
 | `U`       | Removes all falsey elements from the stack.                                | `2 3 > U 7` becomes [7]               |
@@ -47,7 +47,7 @@ Stack-based interpreted esolang involving integers and single char commands. Ins
 | `n`       | Sums all ints in the stack together.                                       | `5 5 5 n` becomes [15]                |
 | `I`       | Increments the top element of the stack.                                   | `0 I I` becomes [2]                   |
 | `D`       | Decrements the top element of the stack.                                   | `7 D D` becomes [5]                   |
-| `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [0]                     | 
+| `?`       | Checks if the top element is even. (Lazy modulo)                           | `4 ?` becomes [1]                     | 
 | `b`       | Splits the top element into seprate integers                               | `6 ! b` becomes [7, 2, 0]             |
 | `i`       | Gets input and puts it to the stack if its an int                          |                                       |
 | `_`       | Puts the total number of elements onto the stack.                          | `9 1 2 _` becomes [9, 1, 1, 3]        | 
